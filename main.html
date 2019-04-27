@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web App</title>
+    <style>
+        #map {
+            height: 100%;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #over_map {
+            position: absolute;
+            top: 10px;
+            left: 89%;
+            z-index: 99;
+            background-color: #ccffcc;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <div id="over_map">
+        <div>
+            <span>Linhas ativas: </span><span id="cars">0</span>
+        </div>
+    </div>
+
+    <!-- jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBHcYZKVU4mja270nlBbPoFKA9d3dTFiYU",
+            authDomain: "appweb-14c52.firebaseapp.com",
+            databaseURL: "https://appweb-14c52.firebaseio.com",
+            projectId: "appweb-14c52",
+            storageBucket: "appweb-14c52.appspot.com",
+            messagingSenderId: "294505478058"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="script.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDU_oaXcqVLv0W18ialogPMa6a1jsnoKAU&callback=initMap">
+        </script>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>App - entre ou cadastre-se</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div id="register_div" class="main_div">
+    <h1>Abra sua conta</h1>
+    <h4>É rápido e gratuito.</h4>
+    <input type="email" placeholder="Email..." id="register_user_email" />
+    <input type="password" placeholder="Senha..." id="register_user_password" />
+    <button onclick="register_user()">Registrar novo usuário</button>
+    <p onclick="entrar()">Já possui uma conta? <a href="#">Entrar</a>.</p>
+  </div>
+
+  <div id="login_div" class="main_div">
+    <h1>Acessar sua conta</h1>
+    <h4>Insira seu e-mail e senha.</h4>
+    <input type="email" placeholder="Email..." id="email_field" />
+    <input type="password" placeholder="Senha..." id="password_field" />
+    <button onclick="login()">Fazer login</button>
+  </div>
+
+  <div id="user_div" class="loggedin-div">
+    <h3>Welcome User</h3>
+    <p id="user_para">Welcome to Firebase web login Example. You're currently logged in.</p>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBHcYZKVU4mja270nlBbPoFKA9d3dTFiYU",
+      authDomain: "appweb-14c52.firebaseapp.com",
+      databaseURL: "https://appweb-14c52.firebaseio.com",
+      projectId: "appweb-14c52",
+      storageBucket: "appweb-14c52.appspot.com",
+      messagingSenderId: "294505478058"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="script.js"></script>
+
+</body>
+
+</html>
