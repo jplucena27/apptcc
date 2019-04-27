@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css" />
     <title>Web App</title>
     <style>
         #map {
@@ -30,13 +31,23 @@
 </head>
 
 <body>
+    <img onclick="open_menu()" id="menu_btn" src="https://img.icons8.com/material-rounded/26/000000/menu.png">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#" id="user_info">Usuário</a>
+        <a href="#">Home</a>
+        <a href="#">Ajuda</a>
+        <a href="#">Configurações</a>
+        <a href="#">Indicar amigos</a>
+        <a href="#">Sair</a>
+    </div>
     <div id="map"></div>
-
     <div id="over_map">
         <div>
             <span>Linhas ativas: </span><span id="cars">0</span>
         </div>
     </div>
+
 
     <!-- jQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
