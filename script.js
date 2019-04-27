@@ -406,3 +406,30 @@ cars_Ref.on('child_removed', function (data) {
     cars_count--;
     document.getElementById("cars").innerHTML = cars_count;
 });
+//side menu
+  function open_menu(){
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("menu_btn").style.display = "none";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("menu_btn").style.display = "block";
+  }
+
+  function user_info(){
+    var user = firebase.auth().currentUser;
+    var name, email, photoUrl, uid, emailVerified;
+
+if (user != null) {
+  name = user.displayName;
+  email = user.email;
+  photoUrl = user.photoURL;
+  emailVerified = user.emailVerified;
+  uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+                   // this value to authenticate with your backend server, if
+                   // you have one. Use User.getToken() instead.
+}
+    
+    document.getElementById("user_info").innerHTML = user.email;
+  }
