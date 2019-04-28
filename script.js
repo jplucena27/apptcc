@@ -1,3 +1,4 @@
+
 function entrar() {
     document.getElementById("register_div").style.display = "none";
     document.getElementById("login_div").style.display = "block";
@@ -13,6 +14,14 @@ function register_user() {
         window.alert("Erro: " + errorMessage);
     });
 }
+function update_loc(latitude, longitude) {
+    var user = firebase.auth().currentUser;
+    var firebase_ref = firebase.database().ref(user.uid)
+            firebase_ref.update({
+                lat : latitude,
+                lng: longitude
+            })
+}
 
 //Login 
 firebase.auth().onAuthStateChanged(function (user) {
@@ -27,8 +36,23 @@ firebase.auth().onAuthStateChanged(function (user) {
         if (user != null) {
 
             var email_id = user.email;
-            document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
-            //window.location.href = "main.html";
+            document.getElementById("user_para").innerHTML = "Você está logado como : " + email_id;
+
+            user.providerData.forEach(function (profile) {
+                console.log("Sign-in provider: " + profile.providerId);
+                console.log("  Provider-specific UID: " + profile.uid);
+                console.log("  Name: " + profile.displayName);
+                console.log("  Email: " + profile.email);
+                console.log("  Photo URL: " + profile.photoURL);
+            })
+            var firebase_ref = firebase.database().ref()
+            firebase_ref.child(user.uid).set({
+                username: null,
+                email: user.email,
+                id: user.uid,
+                lat: 0,
+                lng: 0
+            })
         }
 
     } else {
@@ -62,7 +86,7 @@ function to_main() {
 
 function logout() {
     firebase.auth().signOut();
-    window.location.replace("/index.html")
+    window.location.replace("index.html")
 }
 
 
@@ -336,7 +360,10 @@ function initMap() {
             var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
+
             };
+
+            update_loc(position.coords.latitude, position.coords.longitude)
 
             infoWindow.setPosition(pos);
             var marker = new google.maps.Marker({
@@ -361,8 +388,16 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
 }
+//dados para o database
+// var data = {
+//     sender: null,
+//     timestamp: null,
+//     lat: null,
+//     lng: null
+//   };
 
-// This Function will create a car icon with angle and add/display that marker on the map
+
+// // This Function will create a car icon with angle and add/display that marker on the map
 function AddCar(data) {
 
     var icon = { // car icon
@@ -408,13 +443,14 @@ cars_Ref.on('child_removed', function (data) {
     cars_count--;
     document.getElementById("cars").innerHTML = cars_count;
 });
-//side menu
-  function open_menu(){
-      document.getElementById("mySidenav").style.width = "250px";
-      document.getElementById("menu_btn").style.display = "none";
-  }
 
-  function closeNav() {
+//side menu
+function open_menu() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("menu_btn").style.display = "none";
+}
+
+function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("menu_btn").style.display = "block";
-  }
+}

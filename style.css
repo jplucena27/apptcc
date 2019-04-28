@@ -1,3 +1,24 @@
+#map {
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#over_map {
+  position: absolute;
+  top: 10px;
+  left: 89%;
+  z-index: 99;
+  background-color: #111;
+  color: #f1f1f1;
+  font-family: 'Nunito', sans-serif;
+  padding: 10px;
+}
  body {
    background: #fff;
    padding: 0px;
