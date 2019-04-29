@@ -2,8 +2,7 @@
   height: 100%;
 }
 
-html,
-body {
+html, body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -14,123 +13,169 @@ body {
   top: 10px;
   left: 89%;
   z-index: 99;
-  background-color: #111;
-  color: #f1f1f1;
+  background-color: #5d8ffc;
+  color: #fff;
   font-family: 'Nunito', sans-serif;
   padding: 10px;
 }
- body {
-   background: #fff;
-   padding: 0px;
-   margin: 0px;
-   font-family: 'Nunito', sans-serif;
-   font-size: 16px;
- }
 
- input, button {
-   font-family: 'Nunito', sans-serif;
-   font-weight: 700;
- }
+#over_map:hover {
+  background: #fff;
+  color: #5d8ffc;
+  border: 1px solid #5d8ffc;
+  cursor: pointer;
+}
 
- #register_div.main_div {
-   width: 20%;
-   margin: 0px auto;
-   margin-top: 150px;
-   padding: 20px;
- }
+body {
+  background: #fff;
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+}
 
- #login_div.main_div {
-   width: 20%;
-   margin: 0px auto;
-   margin-top: 150px;
-   padding: 20px;
-   display: none;
- }
+input, button {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+}
 
- .main_div input {
-   display: block;
-   border: 1px solid #ccc;
-   border-radius: 5px;
-   background: #fff;
-   padding: 15px;
-   outline: none;
-   width: 100%;
-   margin-bottom: 20px;
-   transition: 0.3s;
-   -webkit-transition: 0.3s;
-   -moz-transition: 0.3s;
- }
+#img_logo, #user_img {
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
- .main_div input:focus {
-   border: 1px solid #777;
- }
+#register_div.main_div {
+  border: solid 1px;
+  border-radius: 20px;
+  width: 20%;
+  margin: 0px auto;
+  margin-top: 150px;
+  padding: 20px;
+}
 
- .main_div button, .loggedin-div button {
-   margin-top: 10px;
-   background: #5d8ffc;
-   color: #fff;
-   border: 1px solid #5d8ffc;
-   border-radius: 5px;
-   padding: 15px;
-   display: block;
-   width: 100%;
-   transition: 0.3s;
-   -webkit-transition: 0.3s;
-   -moz-transition: 0.3s;
- }
+#login_div.main_div {
+  border: solid 1px;
+  border-radius: 20px;
+  width: 20%;
+  margin: 0px auto;
+  margin-top: 150px;
+  padding: 20px;
+  display: none;
+}
 
- .main_div button:hover, .loggedin-div button:hover {
-   background: #fff;
-   color: #5d8ffc;
-   border: 1px solid #5d8ffc;
-   cursor: pointer;
- }
+#user_div.loggedin-div {
+  width: 50%;
+  margin: 0px auto;
+  margin-top: 150px;
+  padding: 20px;
+}
 
- .side_nav_menu {
-   position: absolute;
-   z-index: 5;
-   background-color: #111;
-   padding: 5px;
-   transition: 0.5s;
-   font-family: 'Nunito', sans-serif;
- }
+.main_div input {
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+  padding: 15px;
+  outline: none;
+  width: 100%;
+  margin-bottom: 20px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+}
 
- /* side menu */
+.main_div input:focus {
+  border: 1px solid #777;
+}
 
- #menu_btn {
-   position: absolute;
-   z-index: 4;
- }
+.main_div button, .loggedin-div button {
+  margin-top: 10px;
+  background: #5d8ffc;
+  color: #fff;
+  border: 1px solid #5d8ffc;
+  border-radius: 5px;
+  padding: 15px;
+  display: block;
+  width: 100%;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+}
 
- .sidenav {
-   height: 100%;
-   width: 0;
-   position: fixed;
-   z-index: 1;
-   top: 0;
-   left: 0;
-   background-color: #111;
-   overflow-x: hidden;
-   transition: 0.5s;
-   padding-top: 60px;
- }
- .sidenav .closebtn {
+.main_div button:hover, .loggedin-div button:hover {
+  background: #fff;
+  color: #5d8ffc;
+  border: 1px solid #5d8ffc;
+  cursor: pointer;
+}
+
+/* side menu */
+
+#menu_button {
+  position: absolute;
+  z-index: 4;
+  font-family: 'Nunito', sans-serif;
+  /* font-weight: 700; */
+  top: 10px;
+  background-color: #5d8ffc;
+  color: #fff;
+  padding: 10px;
+}
+#menu_button:hover{
+  background: #fff;
+  color: #5d8ffc;
+  border: 1px solid #5d8ffc;
+  cursor: pointer;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #5d8ffc;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav .closebtn {
+  color: #fff;
   position: absolute;
   top: 0;
+  font-size: 25px;
   right: 25px;
-  font-size: 36px;
+  margin: 5px;
   margin-left: 50px;
 }
 
- .sidenav a {
-   padding: 8px 8px 8px 32px;
-   text-decoration: none;
-   font-size: 25px;
-   color: #818181;
-   display: block;
-   transition: 0.3s;
- }
+.sidenav .closebtn:hover {
+  color: #5d8ffc;
+  background: #fff;
+}
 
- .sidenav a:hover {
-   color: #f1f1f1;
- }
+.sidenav img {
+  display: block;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.sidenav a {
+  padding: 10px;
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+}
+
+
+.sidenav a.opt_menu:hover {
+  background: #fff;
+  color: #5d8ffc;
+  cursor: pointer;
+}

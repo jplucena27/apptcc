@@ -12,7 +12,8 @@
 <body>
 
   <div id="register_div" class="main_div">
-    <h1>Abra sua conta</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Victoria_bus_logo.svg" alt="logo image" id="img_logo">
+    <h1>Criar nova conta</h1>
     <h4>É rápido e gratuito.</h4>
     <input type="email" placeholder="Email..." id="register_user_email" />
     <input type="password" placeholder="Senha..." id="register_user_password" />
@@ -21,6 +22,7 @@
   </div>
 
   <div id="login_div" class="main_div">
+    <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Victoria_bus_logo.svg" alt="logo image" id="img_logo">
     <h1>Acessar sua conta</h1>
     <h4>Insira seu e-mail e senha.</h4>
     <input type="email" placeholder="Email..." id="email_field" />
@@ -28,12 +30,14 @@
     <button onclick="login()">Fazer login</button>
   </div>
 
-   <div id="user_div" class="loggedin-div" style="display:none">
-    <h3>Bem vindo</h3>
+  <div id="user_div" class="loggedin-div" style="display:none">
+    <img src="https://www.waspcom.com/wp-content/uploads/2014/10/user-placeholder-circle-1.png" alt="user image" id="user_img">
+    <h3>Bem vindo.</h3>
     <p id="user_para">Você está logado como.</p>
-    <button onclick="logout()">Logout</button>
     <button onclick="to_main()">Ver proximidades </button>
-  </div> 
+    
+    <button onclick="logout()">Logout</button>
+  </div>
 
 
   <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
