@@ -16,7 +16,7 @@ function register_user() {
 }
 function update_loc(latitude, longitude, heading) {
     var user = firebase.auth().currentUser;
-    var firebase_ref = firebase.database().ref(user.uid)
+    var firebase_ref = firebase.database().ref('/users').child(user.uid)
     firebase_ref.update({
         lat: latitude,
         lng: longitude,
@@ -38,8 +38,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 
             var email_id = user.email;
             document.getElementById("user_para").innerHTML = "Você está logado como : " + email_id;
-            
-            var firebase_ref = firebase.database().ref()
+
+            var firebase_ref = firebase.database().ref("/users")
             firebase_ref.child(user.uid).set({
                 username: null,
                 email: user.email,
@@ -48,8 +48,6 @@ firebase.auth().onAuthStateChanged(function (user) {
                 lng: 0,
                 heading: 0,
                 timestamp: firebase.database.ServerValue.TIMESTAMP,
-                //console.log(firebase.database.ServerValue.TIMESTAMP*1000)
-
             })
         }
 
@@ -415,18 +413,31 @@ function AddCar(data) {
     marker.addListener('click', function () {
         infowindow.open(map, marker);
     });
-
     markers[data.key] = marker; // add marker in the markers array...
     document.getElementById("cars").innerHTML = cars_count;
 }
 
 // get firebase database reference...
-var cars_Ref = firebase.database().ref('/');
+var cars_Ref = firebase.database().ref('/users')
 
 // this event will be triggered when a new object will be added in the database...
+
+// cars_Ref.on('value', function(data) {
+//     if(data.val()){
+//         //do your thing here.
+//         console.log(data.val());
+//         cars_count++
+//         AddCar(data)
+//     }
+// }, function(error) {
+//     // The Promise was rejected.
+//     console.log('Error: ',error);
+// });
+
 cars_Ref.on('child_added', function (data) {
     cars_count++;
     AddCar(data);
+    console.log(data.val())
 });
 
 // this event will be triggered on location change of any car...
