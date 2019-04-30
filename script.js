@@ -1,6 +1,13 @@
+function loader(){
+    document.getElementById("register_div").style.display = "none"
+    document.getElementById("load").style.display = "block";
+    var timeout = setTimeout(entrar, 1000)
+   
+}
 
 function entrar() {
     document.getElementById("register_div").style.display = "none";
+    document.getElementById("load").style.display = "none";
     document.getElementById("login_div").style.display = "block";
 }
 
