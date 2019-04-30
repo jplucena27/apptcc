@@ -44,11 +44,12 @@ firebase.auth().onAuthStateChanged(function (user) {
         if (user != null) {
 
             var email_id = user.email;
+            var name = document.getElementById("register_user_name").value
             document.getElementById("user_para").innerHTML = "Você está logado como : " + email_id;
 
             var firebase_ref = firebase.database().ref("/users")
-            firebase_ref.child(user.uid).set({
-                username: null,
+            firebase_ref.child(user.uid).update({
+                username: name,
                 email: user.email,
                 id: user.uid,
                 lat: 0,
