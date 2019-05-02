@@ -1,8 +1,8 @@
-function loader(){
+function loader() {
     document.getElementById("register_div").style.display = "none"
     document.getElementById("load").style.display = "block";
     var timeout = setTimeout(entrar, 1000)
-   
+
 }
 
 function entrar() {
@@ -14,6 +14,7 @@ function entrar() {
 function register_user() {
     var email = document.getElementById("register_user_email").value
     var password = document.getElementById("register_user_password").value
+    var name = document.getElementById("register_user_name").value
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -35,8 +36,8 @@ function update_loc(latitude, longitude, heading) {
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         // User is signed in.
-        document.getElementById("login_div").style.display = "none";
-        document.getElementById("register_div").style.display = "none";
+        document.getElementById("login_div").style.display = "none"
+        document.getElementById("register_div").style.display = "none"
         document.getElementById("user_div").style.display = "block"
 
         var user = firebase.auth().currentUser;
@@ -45,18 +46,21 @@ firebase.auth().onAuthStateChanged(function (user) {
 
             var email_id = user.email;
             var name = document.getElementById("register_user_name").value
-            document.getElementById("user_para").innerHTML = "Você está logado como : " + email_id;
 
             var firebase_ref = firebase.database().ref("/users")
-            firebase_ref.child(user.uid).update({
-                username: name,
-                email: user.email,
-                id: user.uid,
-                lat: 0,
-                lng: 0,
-                heading: 0,
-                timestamp: firebase.database.ServerValue.TIMESTAMP,
-            })
+            document.getElementById("user_para").innerHTML = "Você está logado como: "  + email_id
+            //insere novo user no banco
+            if (name != "") {
+                firebase_ref.child(user.uid).update({
+                    username: name,
+                    email: user.email,
+                    id: user.uid,
+                    lat: 0,
+                    lng: 0,
+                    heading: 0,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
+                })
+            }
         }
 
     } else {
