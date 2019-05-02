@@ -22,13 +22,15 @@ function register_user() {
         window.alert("Erro: " + errorMessage);
     });
 }
-function update_loc(latitude, longitude, heading) {
+//update user location on user DB
+function upload_user_location(latitude, longitude, heading) {
     var user = firebase.auth().currentUser;
     var firebase_ref = firebase.database().ref('/users').child(user.uid)
     firebase_ref.update({
         lat: latitude,
         lng: longitude,
-        heading: heading
+        heading: heading,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
     })
 }
 
@@ -48,16 +50,16 @@ firebase.auth().onAuthStateChanged(function (user) {
             var name = document.getElementById("register_user_name").value
 
             var firebase_ref = firebase.database().ref("/users")
-            document.getElementById("user_para").innerHTML = "Você está logado como: "  + email_id
+            document.getElementById("user_para").innerHTML = "Você está logado como: " + email_id
             //insere novo user no banco
             if (name != "") {
                 firebase_ref.child(user.uid).update({
                     username: name,
                     email: user.email,
                     id: user.uid,
-                    lat: 0,
-                    lng: 0,
-                    heading: 0,
+                    // lat: 0,
+                    // lng: 0,
+                    // heading: 0,
                     timestamp: firebase.database.ServerValue.TIMESTAMP
                 })
             }
@@ -368,18 +370,20 @@ function initMap() {
             var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
-                heading: position.coords.heading
+                //heading: position.coords.heading
             };
 
-            update_loc(position.coords.latitude, position.coords.longitude, position.coords.heading)
+            upload_user_location(position.coords.latitude, position.coords.longitude, position.coords.heading)
 
             infoWindow.setPosition(pos);
             var marker = new google.maps.Marker({
                 position: pos,
-                map: map
+                map: map,
+                icon: 'https://img.icons8.com/ios-glyphs/30/000000/marker.png',
+                title: 'Você está aqui'
             });
-            //infoWindow.setContent('Você está aqui.');
-            //infoWindow.open(map, marker);
+            // infoWindow.setContent('Você está aqui.');
+            // infoWindow.open(map, marker);
             map.setCenter(pos);
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -392,33 +396,36 @@ function initMap() {
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
-        'Error: The Geolocation service failed.' :
-        'Error: Your browser doesn\'t support geolocation.');
+        'Error: O serviço de localização falhou.' :
+        'Error: Seu navegador não suporta GPS.');
     infoWindow.open(map);
 }
 
 // // This Function will create a car icon with angle and add/display that marker on the map
 function AddCar(data) {
 
-    var icon = { // car icon
-        path: 'M29.395,0H17.636c-3.117,0-5.643,3.467-5.643,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759   c3.116,0,5.644-2.527,5.644-5.644V6.584C35.037,3.467,32.511,0,29.395,0z M34.05,14.188v11.665l-2.729,0.351v-4.806L34.05,14.188z    M32.618,10.773c-1.016,3.9-2.219,8.51-2.219,8.51H16.631l-2.222-8.51C14.41,10.773,23.293,7.755,32.618,10.773z M15.741,21.713   v4.492l-2.73-0.349V14.502L15.741,21.713z M13.011,37.938V27.579l2.73,0.343v8.196L13.011,37.938z M14.568,40.882l2.218-3.336   h13.771l2.219,3.336H14.568z M31.321,35.805v-7.872l2.729-0.355v10.048L31.321,35.805',
-        scale: 0.8,
-        fillColor: "#a9b4cc", //<-- Car Color, you can change it 
-        fillOpacity: 1,
-        strokeWeight: 1,
-        anchor: new google.maps.Point(0, 5),
-        rotation: data.val().heading //<-- Car angle
-    };
+    // var icon = { // car icon
+    //     path: 'M29.395,0H17.636c-3.117,0-5.643,3.467-5.643,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759   c3.116,0,5.644-2.527,5.644-5.644V6.584C35.037,3.467,32.511,0,29.395,0z M34.05,14.188v11.665l-2.729,0.351v-4.806L34.05,14.188z    M32.618,10.773c-1.016,3.9-2.219,8.51-2.219,8.51H16.631l-2.222-8.51C14.41,10.773,23.293,7.755,32.618,10.773z M15.741,21.713   v4.492l-2.73-0.349V14.502L15.741,21.713z M13.011,37.938V27.579l2.73,0.343v8.196L13.011,37.938z M14.568,40.882l2.218-3.336   h13.771l2.219,3.336H14.568z M31.321,35.805v-7.872l2.729-0.355v10.048L31.321,35.805',
+    //     scale: 0.4,
+    //     fillColor: "#a9b4cc", //<-- Bus Color 
+    //     fillOpacity: 1,
+    //     strokeWeight: 1,
+    //     anchor: new google.maps.Point(0, 5),
+    //     rotation: data.val().heading //<-- Bus angle
+    // };
 
     var infowindow = new google.maps.InfoWindow({
-        content: "TESTE"
+        content: 'Nome: Nome da linha, número da linha'
     });
 
-    var uluru = { lat: data.val().lat, lng: data.val().lng };
+    var uluru = {
+        lat: parseFloat(data.val().lat),
+        lng: parseFloat(data.val().lng)
+    };
 
     var marker = new google.maps.Marker({
         position: uluru,
-        icon: icon,
+        icon: 'https://img.icons8.com/ultraviolet/40/000000/trolleybus.png',
         map: map
     });
 
@@ -429,37 +436,29 @@ function AddCar(data) {
     document.getElementById("cars").innerHTML = cars_count;
 }
 
+
 // get firebase database reference...
-var cars_Ref = firebase.database().ref('/users')
+//var loc_ref = firebase.database().ref('/users')
+var bus_loc_ref = firebase.database().ref('/coletivos')
 
 // this event will be triggered when a new object will be added in the database...
 
-// cars_Ref.on('value', function(data) {
-//     if(data.val()){
-//         //do your thing here.
-//         console.log(data.val());
-//         cars_count++
-//         AddCar(data)
-//     }
-// }, function(error) {
-//     // The Promise was rejected.
-//     console.log('Error: ',error);
-// });
 
-cars_Ref.on('child_added', function (data) {
+
+bus_loc_ref.on('child_added', function (data) {
     cars_count++;
-    AddCar(data);
-    console.log(data.val())
+    AddCar(data)
+    //console.log(data.val())
 });
 
-// this event will be triggered on location change of any car...
-cars_Ref.on('child_changed', function (data) {
+//this event will be triggered on location change of any car...
+bus_loc_ref.on('child_changed', function (data) {
     markers[data.key].setMap(null);
     AddCar(data);
 });
 
 // If any car goes offline then this event will get triggered and we'll remove the marker of that car...  
-cars_Ref.on('child_removed', function (data) {
+bus_loc_ref.on('child_removed', function (data) {
     markers[data.key].setMap(null);
     cars_count--;
     document.getElementById("cars").innerHTML = cars_count;
@@ -468,7 +467,7 @@ cars_Ref.on('child_removed', function (data) {
 //side menu
 function open_menu() {
     var user = firebase.auth().currentUser;
-    document.getElementById("profile_mail").innerHTML = user.email;
+    document.getElementById("profile_mail").innerHTML = user.email
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("menu_button").style.display = "none";
 }
