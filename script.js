@@ -41,6 +41,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         document.getElementById("login_div").style.display = "none"
         document.getElementById("register_div").style.display = "none"
         document.getElementById("user_div").style.display = "block"
+        document.title = user.email
 
         var user = firebase.auth().currentUser;
 
@@ -415,7 +416,7 @@ function AddCar(data) {
     // };
 
     var infowindow = new google.maps.InfoWindow({
-        content: 'Nome: Nome da linha, número da linha'
+        content: 'info do coletivo'
     });
 
     var uluru = {
@@ -435,7 +436,6 @@ function AddCar(data) {
     markers[data.key] = marker; // add marker in the markers array...
     document.getElementById("cars").innerHTML = cars_count;
 }
-
 
 // get firebase database reference...
 //var loc_ref = firebase.database().ref('/users')
