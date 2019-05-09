@@ -1,7 +1,7 @@
 function loader() {
     document.getElementById("register_div").style.display = "none"
     document.getElementById("load").style.display = "block";
-    var timeout = setTimeout(entrar, 1000)
+    setTimeout(function () { entrar(); }, 800);
 
 }
 
@@ -415,7 +415,7 @@ function AddCar(data) {
 
     var marker = new google.maps.Marker({
         position: uluru,
-        icon: 'https://img.icons8.com/ultraviolet/40/000000/trolleybus.png',
+        icon: 'icons/icon-bus-36.png',
         map: map
     });
 
@@ -425,7 +425,7 @@ function AddCar(data) {
 
         // });
         var d = new Date()
-        infowindow.setContent('<strong>' + data.val().nome + '</strong><br>' + data.val().linha + '<br>' + d.getHours() + d.getMinutes());
+        infowindow.setContent('<strong>' + data.val().nome + '</strong><br>' + data.val().linha + '<br>' + d.getHours() + ":" + d.getMinutes());
         infowindow.open(map, marker);
         setTimeout(function () { infowindow.close(); }, 1500);
     });

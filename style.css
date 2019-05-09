@@ -7,11 +7,11 @@
   height: 11em;
   border-radius: 50%;
   background: #5d8ffc;
-  background: -moz-linear-gradient(left, #5d8ffc 10%, rgba(93,143,252, 0) 42%);
-  background: -webkit-linear-gradient(left, #5d8ffc 10%, rgba(93,143,252, 0) 42%);
-  background: -o-linear-gradient(left, #5d8ffc 10%, rgba(93,143,252, 0) 42%);
-  background: -ms-linear-gradient(left, #5d8ffc 10%, rgba(93,143,252, 0) 42%);
-  background: linear-gradient(to right, #5d8ffc 10%, rgba(93,143,252, 0) 42%);
+  background: -moz-linear-gradient(left, #5d8ffc 10%, rgba(93, 143, 252, 0) 42%);
+  background: -webkit-linear-gradient(left, #5d8ffc 10%, rgba(93, 143, 252, 0) 42%);
+  background: -o-linear-gradient(left, #5d8ffc 10%, rgba(93, 143, 252, 0) 42%);
+  background: -ms-linear-gradient(left, #5d8ffc 10%, rgba(93, 143, 252, 0) 42%);
+  background: linear-gradient(to right, #5d8ffc 10%, rgba(93, 143, 252, 0) 42%);
   position: relative;
   -webkit-animation: load3 1.4s infinite linear;
   animation: load3 1.4s infinite linear;
@@ -19,6 +19,7 @@
   -ms-transform: translateZ(0);
   transform: translateZ(0);
 }
+
 .loader:before {
   width: 50%;
   height: 50%;
@@ -29,6 +30,7 @@
   left: 0;
   content: '';
 }
+
 .loader:after {
   background: #ffffff;
   width: 75%;
@@ -42,6 +44,7 @@
   bottom: 0;
   right: 0;
 }
+
 @-webkit-keyframes load3 {
   0% {
     -webkit-transform: rotate(0deg);
@@ -52,6 +55,7 @@
     transform: rotate(360deg);
   }
 }
+
 @keyframes load3 {
   0% {
     -webkit-transform: rotate(0deg);
@@ -62,7 +66,6 @@
     transform: rotate(360deg);
   }
 }
-
 
 #map {
   height: 100%;
@@ -89,7 +92,6 @@ html, body {
   background: #fff;
   color: #5d8ffc;
   border: 1px solid #5d8ffc;
-  
 }
 
 body {
@@ -104,13 +106,14 @@ input, button {
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
 }
-#to_register{
+
+#to_register {
   font-family: 'Nunito', sans-serif;
   width: 30%;
 }
-#img_logo, #user_img {
+
+.img_logo, #user_img {
   display: block;
-  width: 50%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -192,7 +195,8 @@ input, button {
   color: #fff;
   padding: 10px;
 }
-#menu_button:hover{
+
+#menu_button:hover {
   background: #fff;
   color: #5d8ffc;
   border: 1px solid #5d8ffc;
@@ -241,7 +245,6 @@ input, button {
   display: block;
   transition: 0.3s;
 }
-
 
 .sidenav a.opt_menu:hover {
   background: #fff;
