@@ -2,7 +2,6 @@ function loader() {
     document.getElementById("register_div").style.display = "none"
     document.getElementById("load").style.display = "block";
     setTimeout(function () { entrar(); }, 800);
-
 }
 
 function entrar() {
@@ -22,7 +21,7 @@ function register_user() {
         window.alert("Erro: " + errorMessage);
     });
 }
-//update user location on user DB
+//update user location no user DB
 function upload_user_location(latitude, longitude, heading) {
     var user = firebase.auth().currentUser;
     var firebase_ref = firebase.database().ref('/users').child(user.uid)

@@ -33,7 +33,7 @@
       <button onclick="login()">Fazer login</button>
     </div>
 
-    <div id="user_div" class="loggedin-div" style="display:none">
+    <div id="user_div" class="loggedin-div">
       <img src="https://www.waspcom.com/wp-content/uploads/2014/10/user-placeholder-circle-1.png" alt="user image"
         id="user_img">
       <h3>Bem vindo.</h3>
@@ -43,7 +43,6 @@
       <button onclick="logout()">Logout</button>
     </div>
   </div>
-
 
   <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
   <script>
@@ -59,7 +58,6 @@
     firebase.initializeApp(config);
   </script>
   <script src="script.js"></script>
-
 </body>
 
 </html>
