@@ -10,36 +10,38 @@
 </head>
 
 <body>
-  <div id="register_div" class="main_div">
-    <img src="icons/icon-bus-144.png" alt="logo image" class="img_logo">
-    <h1>Criar nova conta</h1>
-    <h4>É rápido e gratuito.</h4>
-    <input type="text" placeholder="Nome" id="register_user_name" />
-    <input type="email" placeholder="Email..." id="register_user_email" />
-    <input type="password" placeholder="Senha..." id="register_user_password" />
-    <button onclick="register_user()">Registrar novo usuário</button>
-    <p onclick="loader()">Já possui uma conta? <a href="#">Entrar</a>.</p>
-  </div>
+  <div class="vertical-container">
+    <div id="register_div" class="main_div">
+      <img src="icons/icon-bus-144.png" alt="logo image" class="img_logo">
+      <h1>Criar nova conta</h1>
+      <h4>É rápido e gratuito.</h4>
+      <input type="text" placeholder="Nome" id="register_user_name" />
+      <input type="email" placeholder="Email..." id="register_user_email" />
+      <input type="password" placeholder="Senha..." id="register_user_password" />
+      <button onclick="register_user()">Registrar novo usuário</button>
+      <p onclick="loader()">Já possui uma conta? <a href="#">Entrar</a>.</p>
+    </div>
 
-  <div style="display:none" id="load" class="loader">Loading...</div>
+    <div style="display:none" id="load" class="loader">Loading...</div>
 
-  <div id="login_div" class="main_div">
-    <img src="icons//icon-bus-144.png" alt="logo image" class="img_logo">
-    <h1>Acessar sua conta</h1>
-    <h4>Insira seu e-mail e senha.</h4>
-    <input type="email" placeholder="Email..." id="email_field" />
-    <input type="password" placeholder="Senha..." id="password_field" />
-    <button onclick="login()">Fazer login</button>
-  </div>
+    <div id="login_div" class="main_div">
+      <img src="icons//icon-bus-144.png" alt="logo image" class="img_logo">
+      <h1>Acessar sua conta</h1>
+      <h4>Insira seu e-mail e senha.</h4>
+      <input type="email" placeholder="Email..." id="email_field" />
+      <input type="password" placeholder="Senha..." id="password_field" />
+      <button onclick="login()">Fazer login</button>
+    </div>
 
-  <div id="user_div" class="loggedin-div" style="display:none">
-    <img src="https://www.waspcom.com/wp-content/uploads/2014/10/user-placeholder-circle-1.png" alt="user image"
-      id="user_img">
-    <h3>Bem vindo.</h3>
-    <p id="user_para">Você está logado como.</p>
-    <button onclick="to_main()">Ver proximidades </button>
+    <div id="user_div" class="loggedin-div" style="display:none">
+      <img src="https://www.waspcom.com/wp-content/uploads/2014/10/user-placeholder-circle-1.png" alt="user image"
+        id="user_img">
+      <h3>Bem vindo.</h3>
+      <p id="user_para">Você está logado como.</p>
+      <button onclick="to_main()">Ver proximidades </button>
 
-    <button onclick="logout()">Logout</button>
+      <button onclick="logout()">Logout</button>
+    </div>
   </div>
 
 

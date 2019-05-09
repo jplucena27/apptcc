@@ -71,6 +71,45 @@
   height: 100%;
 }
 
+body {
+  background: #fff;
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+}
+
+.vertical-container {
+  /* height: 300px; */
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+#register_div {
+  border: solid 1px;
+  border-radius: 20px;
+  margin-top: 10px;
+  padding: 20px;
+}
+
+#login_div {
+  display: none;
+  border: solid 1px;
+  border-radius: 20px;
+  margin-top: 10px;
+  padding: 20px;
+}
+
+#user_div {
+  display: none;
+  margin-top: 10px;
+  padding: 20px;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -94,54 +133,21 @@ html, body {
   border: 1px solid #5d8ffc;
 }
 
-body {
-  background: #fff;
-  padding: 0px;
-  margin: 0px;
-  font-family: 'Nunito', sans-serif;
-  font-size: 16px;
-}
-
 input, button {
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
 }
 
-#to_register {
+/* #to_register {
   font-family: 'Nunito', sans-serif;
   width: 30%;
-}
+} */
 
 .img_logo, #user_img {
   display: block;
+  width: 50%;
   margin-left: auto;
   margin-right: auto;
-}
-
-#register_div.main_div {
-  border: solid 1px;
-  border-radius: 20px;
-  width: 20%;
-  margin: 0px auto;
-  margin-top: 150px;
-  padding: 20px;
-}
-
-#login_div.main_div {
-  border: solid 1px;
-  border-radius: 20px;
-  width: 20%;
-  margin: 0px auto;
-  margin-top: 150px;
-  padding: 20px;
-  display: none;
-}
-
-#user_div.loggedin-div {
-  width: 50%;
-  margin: 0px auto;
-  margin-top: 150px;
-  padding: 20px;
 }
 
 .main_div input {
