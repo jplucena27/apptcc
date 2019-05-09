@@ -80,7 +80,6 @@ body {
 }
 
 .vertical-container {
-  /* height: 300px; */
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: center;
@@ -90,16 +89,12 @@ body {
 }
 
 #register_div {
-  border: solid 1px;
-  border-radius: 20px;
   margin-top: 10px;
   padding: 20px;
 }
 
 #login_div {
   display: none;
-  border: solid 1px;
-  border-radius: 20px;
   margin-top: 10px;
   padding: 20px;
 }
@@ -137,11 +132,6 @@ input, button {
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
 }
-
-/* #to_register {
-  font-family: 'Nunito', sans-serif;
-  width: 30%;
-} */
 
 .img_logo, #user_img {
   display: block;
@@ -192,6 +182,7 @@ input, button {
 /* side menu */
 
 #menu_button {
+  border-radius: 5px;
   position: absolute;
   z-index: 4;
   font-family: 'Nunito', sans-serif;
@@ -210,6 +201,7 @@ input, button {
 }
 
 .sidenav {
+  border-radius: 5px;
   height: 100%;
   width: 0;
   position: fixed;
@@ -223,6 +215,7 @@ input, button {
 }
 
 .sidenav .closebtn {
+  border-radius: 5px;
   color: #fff;
   position: absolute;
   top: 0;
