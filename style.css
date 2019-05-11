@@ -214,7 +214,7 @@ input, button {
   padding-top: 60px;
 }
 
-.sidenav .closebtn {
+.sidenav #close_menu_button {
   border-radius: 5px;
   color: #fff;
   position: absolute;
@@ -225,12 +225,12 @@ input, button {
   margin-left: 50px;
 }
 
-.sidenav .closebtn:hover {
+.sidenav #close_menu_button:hover {
   color: #5d8ffc;
   background: #fff;
 }
 
-.sidenav img {
+#user_img {
   display: block;
   width: 80%;
   margin: auto;
@@ -249,4 +249,10 @@ input, button {
   background: #fff;
   color: #5d8ffc;
   cursor: pointer;
+}
+
+.menu_icon{
+  width: 10%;
+  float: right;
+  margin-right: 25px;
 }

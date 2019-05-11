@@ -22,13 +22,23 @@ function register_user() {
     });
 }
 //update user location no user DB
-function upload_user_location(latitude, longitude, heading) {
+function upload_user_location(latitude, longitude) {
     var user = firebase.auth().currentUser;
     var firebase_ref = firebase.database().ref('/users').child(user.uid)
     firebase_ref.update({
         lat: latitude,
         lng: longitude,
-        heading: heading,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+    })
+}
+
+function share_user_location(latitude, longitude, speed) {
+    var user = firebase.auth().currentUser;
+    var firebase_ref = firebase.database().ref('/coletivos').child(user.uid)
+    firebase_ref.update({
+        lat: latitude,
+        lng: longitude,
+        speed: speed,
         timestamp: firebase.database.ServerValue.TIMESTAMP
     })
 }
@@ -59,7 +69,6 @@ firebase.auth().onAuthStateChanged(function (user) {
                     id: user.uid,
                     // lat: 0,
                     // lng: 0,
-                    // heading: 0,
                     timestamp: firebase.database.ServerValue.TIMESTAMP
                 })
             }
@@ -102,7 +111,7 @@ function logout() {
 
 //Maps api e funções
 // counter for online cars...
-var cars_count = 0;
+
 // markers array to store all the markers, so that we could remove marker when any car goes offline and its data will be remove from realtime database...
 var markers = [];
 var map;
@@ -370,10 +379,9 @@ function initMap() {
             var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
-                //heading: position.coords.heading
             };
 
-            upload_user_location(position.coords.latitude, position.coords.longitude, position.coords.heading)
+            upload_user_location(position.coords.latitude, position.coords.longitude)
 
             infoWindow.setPosition(pos);
             var marker = new google.maps.Marker({
@@ -419,22 +427,15 @@ function AddCar(data) {
     });
 
     marker.addListener('click', function () {
-        // var bus_loc_ref = firebase.database().ref('/coletivos')
-        // bus_loc_ref.on('child_added', function (data) {
-
-        // });
         var d = new Date()
         infowindow.setContent('<strong>' + data.val().nome + '</strong><br>' + data.val().linha + '<br>' + d.getHours() + ":" + d.getMinutes());
         infowindow.open(map, marker);
         setTimeout(function () { infowindow.close(); }, 1500);
     });
     markers[data.key] = marker; // add marker in the markers array...
-    document.getElementById("cars").innerHTML = cars_count;
+    
 }
 
-
-// get firebase database reference...
-//var loc_ref = firebase.database().ref('/users')
 var bus_loc_ref = firebase.database().ref('/coletivos')
 
 // this event will be triggered when a new object will be added in the database...
@@ -442,7 +443,7 @@ var bus_loc_ref = firebase.database().ref('/coletivos')
 
 
 bus_loc_ref.on('child_added', function (data) {
-    cars_count++;
+    
     AddCar(data)
     //console.log(data.val())
 });
@@ -456,19 +457,36 @@ bus_loc_ref.on('child_changed', function (data) {
 // If any car goes offline then this event will get triggered and we'll remove the marker of that car...  
 bus_loc_ref.on('child_removed', function (data) {
     markers[data.key].setMap(null);
-    cars_count--;
-    document.getElementById("cars").innerHTML = cars_count;
+    
+    
 });
 
+//Share location
+document.getElementById("share_location").addEventListener("click", function () {
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(function (position) {
+            
+
+            share_user_location(position.coords.latitude, position.coords.longitude, position.coords.speed)
+
+        }, function () {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+})
+// share location end
 //side menu
-function open_menu() {
+document.querySelector('#menu_button').addEventListener('click', function () {
     var user = firebase.auth().currentUser;
     document.getElementById("profile_mail").innerHTML = user.email
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("menu_button").style.display = "none";
-}
+})
 
-function closeNav() {
+document.querySelector('#close_menu_button').addEventListener('click', function () {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("menu_button").style.display = "block";
-}
+})

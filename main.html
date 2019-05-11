@@ -10,25 +10,23 @@
 </head>
 
 <body>
-    <div onclick="open_menu()" id="menu_button">Menu</div>
+    <div id="menu_button">Menu</div>
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <img src="https://www.waspcom.com/wp-content/uploads/2014/10/user-placeholder-circle-1.png" alt="">
+        <a href="javascript:void(0)" id="close_menu_button"">&times;</a>
+        <img id="user_img" src="https://www.waspcom.com/wp-content/uploads/2014/10/user-placeholder-circle-1.png" alt="">
         <a class="opt_menu" href="#" id="profile_mail">Usuário</a>
-        <a class="opt_menu" href="index.html">Home</a>
-        <a class="opt_menu" href="#">Ajuda</a>
-        <a class="opt_menu" href="#">Configurações</a>
-        <a class="opt_menu" href="#">Indicar amigos</a>
-        <a class="opt_menu" onclick="logout()" href="#">Sair</a>
+        <a class="opt_menu" href="index.html">Home <img class="menu_icon" src="icons/menu-icons/home-512.png" alt="home"></a>
+        <a id="share_location" class="opt_menu" href="#">Compartilhar<img class="menu_icon" src="icons/menu-icons/compartilhar-localizacao-512.png" alt="home"></a>
+        <a class="opt_menu" href="#">Solicitar<img class="menu_icon" src="icons/menu-icons/solicitar-localizacao-512.png" alt="home"></a>
+        <a class="opt_menu" href="#">Ajuda <img class="menu_icon" src="icons/menu-icons/ajuda-512.png" alt="home"></a>
+        <a class="opt_menu" href="#">Configurações <img class="menu_icon" src="icons/menu-icons/configuracao-512.png" alt="home"></a>
+        <a class="opt_menu" href="#">Indicar amigos <img class="menu_icon" src="icons/menu-icons/indicar-amigos-512.png" alt="home"></a>
+        <a class="opt_menu" onclick="logout()" href="#">Sair <img class="menu_icon" src="icons/menu-icons/sair-512.png" alt="home"></a>
+    </div>
+    <div>
+        
     </div>
     <div id="map"></div>
-    <div id="over_map">
-        <div>
-            <span>Linhas ativas: </span><span id="cars">0</span>
-        </div>
-    </div>
-
-
     <!-- jQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
