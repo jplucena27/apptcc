@@ -379,8 +379,8 @@ function initMap() {
                 icon: 'https://img.icons8.com/ios-glyphs/30/000000/marker.png',
                 title: 'Você está aqui'
             });
-            // infoWindow.setContent('Você está aqui.');
-            // infoWindow.open(map, marker);
+            //infoWindow.setContent('Você está aqui.');
+            //infoWindow.open(map, marker);
             map.setCenter(pos);
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -416,8 +416,10 @@ function AddCar(data) {
     });
 
     marker.addListener('click', function () {
-        var d = new Date()
-        infowindow.setContent('<strong>' + data.val().nome + '</strong><br>' + data.val().linha + '<br>' + d.getHours() + ":" + d.getMinutes());
+        infowindow.setContent(
+            '<strong>' + data.val().linha + '</strong><br>' +
+            '<strong>' + data.val().numero + '</strong><br>' +
+         '<strong>' + data.val().data) + '</strong><br>'
         infowindow.open(map, marker);
         setTimeout(function () { infowindow.close(); }, 1500);
     });
@@ -433,7 +435,7 @@ bus_loc_ref.on('child_added', function (data) {
 });
 
 //this event will be triggered on location change of any car...
-bus_loc_ref.on('child_changed', function (data) {
+bus_loc_ref.on('child_changed', function (data){
     markers[data.key].setMap(null);
     AddCar(data);
 });
@@ -468,12 +470,14 @@ document.querySelector('#on_share_location').addEventListener('click', function(
 function share_user_location(linha_number, linha_name, latitude, longitude, speed) {
     var user = firebase.auth().currentUser;
     var firebase_ref = firebase.database().ref('/coletivos').child(user.uid)
+    var dateShare = new Date()
     firebase_ref.update({
         linha: linha_name,
         numero: linha_number,
         lat: latitude,
         lng: longitude,
-        speed: speed
+        speed: speed,
+        data: dateShare
     })
 }
 
