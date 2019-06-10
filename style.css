@@ -111,7 +111,8 @@ html, body {
   padding: 0;
 }
 
-#over_map {
+#over_map{
+  display: none;
   position: absolute;
   top: 10px;
   left: 260px;
@@ -126,6 +127,10 @@ html, body {
   background: #fff;
   color: #5d8ffc;
   border: 1px solid #5d8ffc;
+}
+
+.bus_information{
+  text-transform: uppercase;
 }
 
 input, button {
