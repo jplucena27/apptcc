@@ -94,7 +94,8 @@ function logout() {
 var markers = [];
 var map;
 var map, infoWindow;
-var marker = null
+var markerP = null
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -30.1087957, lng: -51.3172272 },
@@ -358,15 +359,15 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
             };
-            if (marker == null) {
-                marker = new google.maps.Marker({
+            if (markerP == null) {
+                markerP = new google.maps.Marker({
                     position: pos,
                     map: map,
                     icon: 'https://img.icons8.com/ios-glyphs/30/000000/marker.png',
                     title: 'Você está aqui'
                 });
               } else {
-                marker.setPosition(map.getCenter());
+                markerP.setPosition(map.getCenter());
               }
             map.setCenter(pos);
         }, function () {
@@ -433,12 +434,14 @@ bus_loc_ref.on('child_removed', function (data) {
 });
 
 //Share on/off location menu
-
-document.querySelector('#on_share_location').addEventListener('click', function(){
+var watchId = null
+function shareLocationOn(){
+    
     let linha_number = document.querySelector('#linha_number').value
     let linha_name = document.querySelector('#linha_name').value
     if (navigator.geolocation) {
-        const watchId = navigator.geolocation.watchPosition(function (position) {
+        watchId = navigator.geolocation.watchPosition(function (position) {
+            
             share_user_location(linha_number, linha_name, position.coords.latitude, position.coords.longitude, position.coords.speed)
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -450,7 +453,7 @@ document.querySelector('#on_share_location').addEventListener('click', function(
     document.querySelector('#linha_number').value = ''
     document.querySelector('#linha_name').value = ''
     console.log('a' +  linha_name + 'b' + linha_number)
-})
+}
 function share_user_location(linha_number, linha_name, latitude, longitude, speed) {
     var user = firebase.auth().currentUser;
     var firebase_ref = firebase.database().ref('/coletivos').child(user.uid)
@@ -465,11 +468,12 @@ function share_user_location(linha_number, linha_name, latitude, longitude, spee
     })
 }
 
-// document.querySelector('#off_share_location').addEventListener('click', function() {
-//     var user = firebase.auth().currentUser;
-//     var firebase_ref = firebase.database().ref('/coletivos').child(user.uid)
-//     firebase_ref.remove()
-// })
+function ShareLocationOff(){
+    var user = firebase.auth().currentUser;
+    var firebase_ref = firebase.database().ref('/coletivos').child(user.uid)
+    firebase_ref.remove()
+    navigator.geolocation.clearWatch(watchId);
+}
 //share location menu
 
 //side menu
