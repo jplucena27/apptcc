@@ -94,7 +94,7 @@ function logout() {
 var markers = [];
 var map;
 var map, infoWindow;
-
+var marker = null
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -30.1087957, lng: -51.3172272 },
@@ -358,17 +358,16 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
             };
-            infoWindow.setPosition(pos);
-            var marker = new google.maps.Marker({
-                position: pos,
-                map: map,
-                icon: 'https://img.icons8.com/ios-glyphs/30/000000/marker.png',
-                title: 'Você está aqui'
-            });
-            function changeMarkerPosition(marker) {
-                var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                marker.setPosition(latlng);
-            }
+            if (marker == null) {
+                marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    icon: 'https://img.icons8.com/ios-glyphs/30/000000/marker.png',
+                    title: 'Você está aqui'
+                });
+              } else {
+                marker.setPosition(map.getCenter());
+              }
             map.setCenter(pos);
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
