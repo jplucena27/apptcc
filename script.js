@@ -21,17 +21,6 @@ function register_user() {
         window.alert("Erro: " + errorMessage);
     });
 }
-//update user location no user DB
-// function upload_user_location(latitude, longitude) {
-//     var user = firebase.auth().currentUser;
-//     var firebase_ref = firebase.database().ref('/users').child(user.uid)
-//     firebase_ref.update({
-//         lat: latitude,
-//         lng: longitude,
-//         timestamp: firebase.database.ServerValue.TIMESTAMP
-//     })
-// }
-
 //Login 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -369,9 +358,6 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
             };
-
-            //upload_user_location(position.coords.latitude, position.coords.longitude)
-
             infoWindow.setPosition(pos);
             var marker = new google.maps.Marker({
                 position: pos,
@@ -379,8 +365,10 @@ function initMap() {
                 icon: 'https://img.icons8.com/ios-glyphs/30/000000/marker.png',
                 title: 'Você está aqui'
             });
-            //infoWindow.setContent('Você está aqui.');
-            //infoWindow.open(map, marker);
+            function changeMarkerPosition(marker) {
+                var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                marker.setPosition(latlng);
+            }
             map.setCenter(pos);
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -447,37 +435,36 @@ bus_loc_ref.on('child_removed', function (data) {
 
 //Share on/off location menu
 
-// document.querySelector('#on_share_location').addEventListener('click', function(){
-//     let linha_number = document.querySelector('#linha_number').value
-//     let linha_name = document.querySelector('#linha_name').value
-//     if (navigator.geolocation) {
-//         const watchId = navigator.geolocation.watchPosition(function (position) {
-//             share_user_location(linha_number, linha_name, position.coords.latitude, position.coords.longitude, position.coords.speed)
-            
-//         }, function () {
-//             handleLocationError(true, infoWindow, map.getCenter());
-//         });
-//     } else {
-//         // Browser doesn't support Geolocation
-//         handleLocationError(false, infoWindow, map.getCenter());
-//     }
-//     document.querySelector('#linha_number').value = ''
-//     document.querySelector('#linha_name').value = ''
-//     console.log('a' +  linha_name + 'b' + linha_number)
-// })
-// function share_user_location(linha_number, linha_name, latitude, longitude, speed) {
-//     var user = firebase.auth().currentUser;
-//     var firebase_ref = firebase.database().ref('/coletivos').child(user.uid)
-//     var dateShare = new Date()
-//     firebase_ref.update({
-//         linha: linha_name,
-//         numero: linha_number,
-//         lat: latitude,
-//         lng: longitude,
-//         speed: speed,
-//         data: dateShare
-//     })
-// }
+document.querySelector('#on_share_location').addEventListener('click', function(){
+    let linha_number = document.querySelector('#linha_number').value
+    let linha_name = document.querySelector('#linha_name').value
+    if (navigator.geolocation) {
+        const watchId = navigator.geolocation.watchPosition(function (position) {
+            share_user_location(linha_number, linha_name, position.coords.latitude, position.coords.longitude, position.coords.speed)
+        }, function () {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+    document.querySelector('#linha_number').value = ''
+    document.querySelector('#linha_name').value = ''
+    console.log('a' +  linha_name + 'b' + linha_number)
+})
+function share_user_location(linha_number, linha_name, latitude, longitude, speed) {
+    var user = firebase.auth().currentUser;
+    var firebase_ref = firebase.database().ref('/coletivos').child(user.uid)
+    var dateShare = new Date()
+    firebase_ref.update({
+        linha: linha_name,
+        numero: linha_number,
+        lat: latitude,
+        lng: longitude,
+        speed: speed,
+        data: dateShare
+    })
+}
 
 // document.querySelector('#off_share_location').addEventListener('click', function() {
 //     var user = firebase.auth().currentUser;
