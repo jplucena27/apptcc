@@ -249,7 +249,9 @@ input, button {
   background-color: #262626;
   padding-left: 8px;
 }
-
+.dropdown-share-location{
+  padding: 5px;
+}
 .bus_information {
   background: transparent;
   border: none;
@@ -259,6 +261,21 @@ input, button {
 }
 
 .share-location-btn {
-  width: 50%;
+  width: 90%;
   display: inline-block;
+  background: transparent;
+  color: #FFF;
+  margin: 3px;
+  border: 1px solid #FFF;
+  border-radius: 5px;
+  padding: 10px;
+  display: block;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+}
+.share-location-btn:hover{
+  background-color: #FFF;
+  color: #000;
+  cursor: pointer;
 }
