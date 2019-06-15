@@ -452,6 +452,8 @@ function shareLocationOn(){
     document.querySelector('#linha_number').value = ''
     document.querySelector('#linha_name').value = ''
     console.log('a' +  linha_name + 'b' + linha_number)
+    closeMenu()
+
 }
 function share_user_location(linha_number, linha_name, latitude, longitude, speed) {
     var user = firebase.auth().currentUser;
@@ -472,6 +474,7 @@ function shareLocationOff(){
     var firebase_ref = firebase.database().ref('/coletivos').child(user.uid)
     firebase_ref.remove()
     navigator.geolocation.clearWatch(watchId);
+    closeMenu()
 }
 //share location menu
 
@@ -483,10 +486,10 @@ document.querySelector('#menu_button').addEventListener('click', function () {
     document.getElementById("menu_button").style.display = "none";
 })
 
-document.querySelector('#close_menu_button').addEventListener('click', function () {
+function closeMenu(){
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("menu_button").style.display = "block";
-})
+}
 
 var dropdown = document.getElementsByClassName("dropdown-btn");
 var i;

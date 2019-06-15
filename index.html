@@ -1,4 +1,4 @@
-<html>
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -7,7 +7,6 @@
   <title>App - entre ou cadastre-se</title>
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="style.css" media="all">
-  <link rel="manifest" crossorigin="use-credentials" href="%PUBLIC_URL%/manifest.json" />
 </head>
 
 <body>
@@ -60,28 +59,6 @@
     firebase.initializeApp(config);
   </script>
   <script src="script.js"></script>
-  <script>
-    if('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js')
-        .then(function() {
-              console.log('Service Worker Registered');
-        });
-    }
-  </script>
-  <script>
-    const messaging = firebase.messaging();
-    messaging.requestPermission()
-    .then(function() {
-      console.log('Notification permission granted.');
-      return messaging.getToken();
-    })
-    .then(function(token) {
-      console.log(token);
-    })
-    .catch(function(err) {
-      console.log('Unable to get permission to notify.', err);
-    })
-  </script>
 </body>
 
 </html>
