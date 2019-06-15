@@ -111,25 +111,7 @@ html, body {
   padding: 0;
 }
 
-/* #over_map{
-  display: none;
-  position: absolute;
-  top: 10px;
-  left: 260px;
-  z-index: 99;
-  background-color: #5d8ffc;
-  color: #fff;
-  font-family: 'Nunito', sans-serif;
-  padding: 10px;
-} */
-
-/* #over_map:hover {
-  background: #fff;
-  color: #5d8ffc;
-  border: 1px solid #5d8ffc;
-} */
-
-.bus_information{
+.bus_information {
   text-transform: uppercase;
 }
 
@@ -256,13 +238,27 @@ input, button {
   cursor: pointer;
 }
 
-.menu_icon{
+.menu_icon {
   width: 10%;
   float: right;
   margin-right: 25px;
 }
+
 .dropdown-share-location {
   display: none;
   background-color: #262626;
   padding-left: 8px;
+}
+
+.bus_information {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #FFF;
+  width: 90%;
+  margin: 3px;
+}
+
+.share-location-btn {
+  width: 50%;
+  display: inline-block;
 }

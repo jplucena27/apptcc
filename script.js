@@ -468,7 +468,7 @@ function share_user_location(linha_number, linha_name, latitude, longitude, spee
     })
 }
 
-function ShareLocationOff(){
+function shareLocationOff(){
     var user = firebase.auth().currentUser;
     var firebase_ref = firebase.database().ref('/coletivos').child(user.uid)
     firebase_ref.remove()
