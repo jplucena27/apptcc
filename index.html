@@ -19,7 +19,7 @@
       <input type="email" placeholder="Email..." id="register_user_email" />
       <input type="password" placeholder="Senha..." id="register_user_password" />
       <button onclick="register_user()">Registrar novo usuário</button>
-      <p onclick="loader()">Já possui uma conta? <a href="#">Entrar</a>.</p>
+      <p onclick="entrar()">Já possui uma conta? <a href="#">Entrar</a>.</p>
     </div>
 
     <div style="display:none" id="load" class="loader">Loading...</div>
@@ -31,6 +31,7 @@
       <input type="email" placeholder="Email..." id="email_field" />
       <input type="password" placeholder="Senha..." id="password_field" />
       <button onclick="login()">Fazer login</button>
+      <button onclick="toRegister()">Voltar</button>
     </div>
 
     <div id="user_div" class="loggedin-div">
