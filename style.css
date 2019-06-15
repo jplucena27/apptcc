@@ -111,9 +111,6 @@ html, body {
   padding: 0;
 }
 
-.bus_information {
-  text-transform: uppercase;
-}
 
 input, button {
   font-family: 'Nunito', sans-serif;
@@ -249,11 +246,14 @@ input, button {
   background-color: #262626;
   padding-left: 8px;
 }
-.dropdown-share-location{
+
+.dropdown-share-location {
   padding: 5px;
 }
+
 .bus_information {
-  background: transparent;
+  text-transform: uppercase;
+  background-color: transparent;
   border: none;
   border-bottom: 1px solid #FFF;
   width: 90%;
@@ -274,7 +274,8 @@ input, button {
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
 }
-.share-location-btn:hover{
+
+.share-location-btn:hover {
   background-color: #FFF;
   color: #000;
   cursor: pointer;
